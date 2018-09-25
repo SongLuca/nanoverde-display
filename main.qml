@@ -13,9 +13,12 @@ Window {
     color: "light green"
 
     FileChecker {
+        id: filechecker
         onNewTagUsername: {
             beer.visible = true
             beerAnimation.running = true
+            tagUser.visible = true
+            tagUserScaling.running = true
         }
     }
 
@@ -69,6 +72,25 @@ Window {
                     duration: 150
                 }
             }
+        }
+    }
+
+    Text {
+        id: tagUser
+        y: 237
+        text: filechecker.tagUsername
+        anchors.horizontalCenterOffset: 0
+        visible: false
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.pixelSize: 20
+
+        ScaleAnimator {
+            id: tagUserScaling
+            running: false
+            target: tagUser
+            from: 0
+            to: 1
+            duration: 150
         }
     }
 
