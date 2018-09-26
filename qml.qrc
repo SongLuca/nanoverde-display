@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>images/cheers.svg</file>
+        <file>filechecker.cpp</file>
+        <file>filechecker.h</file>
+        <file>main.cpp</file>
+    </qresource>
+</RCC>
