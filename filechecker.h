@@ -18,11 +18,12 @@ class FileChecker : public QObject
 
 public:
     explicit FileChecker(QObject *parent = nullptr);
-    QFileSystemWatcher *watcher;
     QString tagUsername();
     std::vector<std::string> split(std::string, char);
 private:
-    QString TAGFILE_PATH = "D:/Program Files/Git projects/test.txt";
+    QFileSystemWatcher * const watcher;
+    QString TAGFILE_PATH = "/home/root/test.txt";
+    void setPath();
 
 signals:
     void newTagUsername();

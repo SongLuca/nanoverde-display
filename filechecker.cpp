@@ -6,15 +6,16 @@
 
 #include <QObject>
 #include <QFileSystemWatcher>
+#include <QTimer>
 #include <QDebug>
 
 using namespace std;
 
-FileChecker::FileChecker (QObject *parent) : QObject(parent)
+FileChecker::FileChecker (QObject *parent) : QObject(parent),
+    watcher(new QFileSystemWatcher(this))
 {
-    watcher = new QFileSystemWatcher(parent);
-    watcher->addPath(TAGFILE_PATH);
     connect(watcher, &QFileSystemWatcher::fileChanged, this, &FileChecker::newTagUsername);
+    QTimer::singleShot(100, this, &FileChecker::setPath);
 }
 
 QString FileChecker::tagUsername()
@@ -28,7 +29,7 @@ QString FileChecker::tagUsername()
         string line;
         while (getline(fin, line)) {
             bool is_empty = true;
-            for (int i = 0; i < line.size(); i++) {
+            for (unsigned int i = 0; i < line.size(); i++) {
                 char ch = line[i];
                 is_empty = is_empty && isspace(ch);
             }
@@ -48,7 +49,7 @@ vector<string> FileChecker::split(string line, char delimiter) {
     vector<string> result;
     string singleString = "";
 
-    for (int i=0; i<line.size(); i++) {
+    for (unsigned int i=0; i<line.size(); i++) {
         if (line[i] == delimiter) {
             result.push_back(singleString);
             singleString = "";
@@ -59,4 +60,8 @@ vector<string> FileChecker::split(string line, char delimiter) {
     }
     result.push_back(singleString);
     return result;
+}
+
+void FileChecker::setPath() {
+    watcher->addPath(TAGFILE_PATH);
 }
