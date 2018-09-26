@@ -1,5 +1,5 @@
-import QtQuick 2.11
-import QtQuick.Window 2.11
+import QtQuick 2.4
+import QtQuick.Window 2.2
 import QtQml 2.2
 
 import nanodisplay 1.0
@@ -128,7 +128,7 @@ Window {
         anchors.topMargin: 0
 
         Text {
-            text: "Date"
+            text: "THIS IS A TEST"
             visible: true
             width: parent.width
             horizontalAlignment: Text.AlignHCenter

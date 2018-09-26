@@ -1,12 +1,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QtQml>
 
 #include "filechecker.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
     QGuiApplication app(argc, argv);
     qmlRegisterType<FileChecker>("nanodisplay", 1, 0, "FileChecker");
 
