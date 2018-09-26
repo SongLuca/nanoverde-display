@@ -7,8 +7,9 @@ import nanodisplay 1.0
 Window {
     id: window
     visible: true
-    width: 272
-    height: 480
+    width: 480
+    height: 272
+    contentOrientation: Qt.PortraitOrientation
     title: qsTr("Nanoverde-display")
     color: "light green"
 
