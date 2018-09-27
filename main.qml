@@ -9,7 +9,7 @@ Window {
     visible: true
     width: 480
     height: 272
-    contentOrientation: Qt.PortraitOrientation
+
     title: qsTr("Nanoverde-display")
     color: "light green"
 
@@ -33,47 +33,64 @@ Window {
         anchors.horizontalCenter: parent.horizontalCenter
         visible: false
 
-        ParallelAnimation {
+        SequentialAnimation {
             id: beerAnimation
             running: false
 
-            ScaleAnimator {
-                target: beer
-                from: 0
-                to: 1
-                duration: 400
-            }
-
-            SequentialAnimation {
-                RotationAnimator {
+            //Starting animation
+            ParallelAnimation {
+                ScaleAnimator {
                     target: beer
                     from: 0
-                    to: 60
-                    duration: 150
+                    to: 1
+                    duration: 400
                 }
 
-                RotationAnimator {
-                    target: beer
-                    from: 60
-                    to: -30
-                    duration: 150
-                }
+                SequentialAnimation {
+                    RotationAnimator {
+                        target: beer
+                        from: 0
+                        to: 60
+                        duration: 150
+                    }
 
-                RotationAnimator {
-                    target: beer
-                    from: -30
-                    to: 15
-                    duration: 150
-                }
+                    RotationAnimator {
+                        target: beer
+                        from: 60
+                        to: -30
+                        duration: 150
+                    }
 
-                RotationAnimator {
-                    target: beer
-                    from: 15
-                    to: 0
-                    duration: 150
+                    RotationAnimator {
+                        target: beer
+                        from: -30
+                        to: 15
+                        duration: 150
+                    }
+
+                    RotationAnimator {
+                        target: beer
+                        from: 15
+                        to: 0
+                        duration: 150
+                    }
                 }
             }
+
+            PauseAnimation {
+                duration: 3000
+            }
+
+            //Ending animation
+            ScaleAnimator {
+                target: beer
+                from: 1
+                to: 0
+                duration: 200
+            }
         }
+
+
     }
 
     Text {
@@ -85,13 +102,29 @@ Window {
         anchors.horizontalCenter: parent.horizontalCenter
         font.pixelSize: 20
 
-        ScaleAnimator {
+        SequentialAnimation {
             id: tagUserScaling
             running: false
-            target: tagUser
-            from: 0
-            to: 1
-            duration: 150
+
+            //Starting animation
+            ScaleAnimator {
+                target: tagUser
+                from: 0
+                to: 1
+                duration: 150
+            }
+
+            PauseAnimation {
+                duration: 3000
+            }
+
+            //Ending animation
+            ScaleAnimator {
+                target: tagUser
+                from: 1
+                to: 0
+                duration: 200
+            }
         }
     }
 
@@ -129,7 +162,7 @@ Window {
         anchors.topMargin: 0
 
         Text {
-            text: "THIS IS A TEST"
+            text: "Date"
             visible: true
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
