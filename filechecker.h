@@ -24,7 +24,7 @@ public:
     std::vector<std::string> split(std::string, char);
 private:
     QFileSystemWatcher * const watcher;
-    QString TAGFILE_PATH = "D:/Program Files/Git Projects/test.txt";
+    QString TAGFILE_PATH = "/home/root/test.txt";
     std::vector<std::string> getLastLine(QString);
     void setPath();
 

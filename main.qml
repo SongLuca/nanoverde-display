@@ -147,10 +147,9 @@ Window {
                 from: 1
                 to: 0
                 duration: 200
-                onStopped: {
-                    tagUser.visible = false
-                    console.log(tagUser.visible)
-                }
+            }
+            onStopped: {
+                tagUser.visible = false
             }
         }
     }
