@@ -23,26 +23,157 @@ Window {
                 tagUserScaling.running = true
             }
             else if (filechecker.tagUsername != "NULL" && filechecker.tagResult == "premio") {
-
+                cop.visible = true
+                copAnimation.running = true
             }
             else if (filechecker.tagUsername != "NULL" && filechecker.tagResult == "ore") {
-
+                watch.visible = true
+                watchAnimation.running = true
             }
             else if (filechecker.tagUsername != "NULL" && filechecker.tagResult == "tag") {
-
+                question.visible = true
+                questionAnimation.running = true
             }
             else if (filechecker.tagUsername != "NULL" && filechecker.tagResult == "chiuso") {
-
+                closed.visible = true
+                closedAnimation.running = true
             }
 
         }
     }
 
     Image {
-        id: beer
+        id: cop
+        source: "images/policeman_90degrees.svg"
         x: 99
         y: 99
+        width: 75
+        height: 75
+        visible: false
+
+        SequentialAnimation {
+            id: copAnimation
+            running: false
+            ScaleAnimator {
+                target: cop
+                from: 0
+                to: 1
+                duration: 200
+            }
+
+            PauseAnimation {
+                duration: 3000
+            }
+
+            ScaleAnimator {
+                target: cop
+                from: 1
+                to: 0
+                duration: 200
+            }
+        }
+    }
+
+    Image {
+        id: watch
+        source: "images/stopwatch_90degrees.svg"
+        x: 99
+        y: 99
+        width: 75
+        height: 75
+        visible: false
+
+        SequentialAnimation {
+            id: watchAnimation
+            running: false
+            ScaleAnimator {
+                target: watch
+                from: 0
+                to: 1
+                duration: 200
+            }
+
+            PauseAnimation {
+                duration: 3000
+            }
+
+            ScaleAnimator {
+                target: watch
+                from: 1
+                to: 0
+                duration: 200
+            }
+        }
+    }
+
+    Image {
+        id: question
+        source: "images/question-mark_90degrees.svg"
+        x: 99
+        y: 99
+        width: 75
+        height: 75
+        visible: false
+
+        SequentialAnimation {
+            id: questionAnimation
+            running: false
+            ScaleAnimator {
+                target: question
+                from: 0
+                to: 1
+                duration: 200
+            }
+
+            PauseAnimation {
+                duration: 3000
+            }
+
+            ScaleAnimator {
+                target: question
+                from: 1
+                to: 0
+                duration: 200
+            }
+        }
+    }
+
+    Image {
+        id: closed
+        source: "images/close_90degrees.svg"
+        x: 99
+        y: 99
+        width: 75
+        height: 75
+        visible: false
+        SequentialAnimation {
+            id: closedAnimation
+            running: false
+            ScaleAnimator {
+                target: closed
+                from: 0
+                to: 1
+                duration: 200
+            }
+
+            PauseAnimation {
+                duration: 3000
+            }
+
+            ScaleAnimator {
+                target: closed
+                from: 1
+                to: 0
+                duration: 200
+            }
+        }
+    }
+
+    Image {
+        id: beer
         source: "images/cheers_90degrees.svg"
+        x: 99
+        y: 99
         width: 75
         height: 75
         anchors.horizontalCenterOffset: 0
@@ -107,8 +238,6 @@ Window {
             }
             onStopped: {
                 beer.visible = false
-                console.log(beer.visible)
-                console.log("DNOSADJ")
             }
         }
 
