@@ -8,27 +8,44 @@ Window {
     id: window
     visible: true
     width: 480
-    height: 272 
+    height: 272
     title: qsTr("Nanoverde-display")
     color: "light green"
 
     FileChecker {
         id: filechecker
+
         onNewTagUsername: {
-            beer.visible = true
-            beerAnimation.running = true
-            tagUser.visible = true
-            tagUserScaling.running = true
+            if (filechecker.tagUsername != "NULL" && filechecker.tagResult == "erogato") {
+                beer.visible = true
+                beerAnimation.running = true
+                tagUser.visible = true
+                tagUserScaling.running = true
+            }
+            else if (filechecker.tagUsername != "NULL" && filechecker.tagResult == "premio") {
+
+            }
+            else if (filechecker.tagUsername != "NULL" && filechecker.tagResult == "ore") {
+
+            }
+            else if (filechecker.tagUsername != "NULL" && filechecker.tagResult == "tag") {
+
+            }
+            else if (filechecker.tagUsername != "NULL" && filechecker.tagResult == "chiuso") {
+
+            }
+
         }
     }
 
     Image {
         id: beer
         x: 99
-        y: 145
-        source: "images/cheers.svg"
+        y: 99
+        source: "images/cheers_90degrees.svg"
         width: 75
         height: 75
+        anchors.horizontalCenterOffset: 0
         anchors.horizontalCenter: parent.horizontalCenter
         visible: false
 
@@ -86,7 +103,12 @@ Window {
                 from: 1
                 to: 0
                 duration: 200
-                onStopped: beer.visible = false
+
+            }
+            onStopped: {
+                beer.visible = false
+                console.log(beer.visible)
+                console.log("DNOSADJ")
             }
         }
 
@@ -94,8 +116,10 @@ Window {
 
     Text {
         id: tagUser
-        y: 237
+        y: 272
+        rotation: -90
         text: filechecker.tagUsername
+        anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenterOffset: 0
         visible: false
         anchors.horizontalCenter: parent.horizontalCenter
@@ -123,17 +147,23 @@ Window {
                 from: 1
                 to: 0
                 duration: 200
-                onStopped: tagUser.visible = false
+                onStopped: {
+                    tagUser.visible = false
+                    console.log(tagUser.visible)
+                }
             }
         }
     }
 
     Text {
         id: status
+        x: -107
+        y: 118
+        rotation: -90
         visible: true
         horizontalAlignment: Text.AlignHCenter
         width: parent.width
-        anchors.bottomMargin: 160
+        anchors.bottomMargin: 118
         anchors.bottom: parent.bottom
         font.pixelSize: 30
 
@@ -141,25 +171,26 @@ Window {
 
     Text {
         id: openTime
+        x: 158
+        y: 130
+        rotation: -90
         width: parent.width
         horizontalAlignment: Text.AlignHCenter
         visible: true
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 50
+        anchors.bottomMargin: 130
     }
 
     Rectangle {
         id: rectangle
-        x: 463
-        visible: true
-        width: parent.width
+        x: -101
+        width: 272
         height: 70
+        anchors.verticalCenter: parent.verticalCenter
+        visible: true
         color: "#B9F6CA"
-        transformOrigin: Item.Center
-        anchors.right: parent.right
-        anchors.rightMargin: 0
-        anchors.top: parent.top
-        anchors.topMargin: 0
+        anchors.verticalCenterOffset: 0
+        rotation: -90
 
         Text {
             text: "Date"
@@ -236,3 +267,8 @@ Window {
     }
 
 }
+
+/*##^## Designer {
+    D{i:20;anchors_height:70;anchors_width:272}
+}
+ ##^##*/

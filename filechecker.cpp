@@ -18,13 +18,13 @@ FileChecker::FileChecker (QObject *parent) : QObject(parent),
     QTimer::singleShot(100, this, &FileChecker::setPath);
 }
 
-QString FileChecker::tagUsername()
+vector<string> FileChecker::getLastLine(QString file)
 {
-    vector<string> lastLineUsername;
     char token_separator = ';';
     string last_line;
     ifstream fin;
-    fin.open(TAGFILE_PATH.toLatin1().data());
+    fin.open(file.toLatin1().data());
+
     if(fin.is_open()) {
         string line;
         while (getline(fin, line)) {
@@ -40,8 +40,34 @@ QString FileChecker::tagUsername()
         fin.close();
     }
 
-    lastLineUsername = split(last_line, token_separator);
-    return QString::fromStdString(lastLineUsername[0]);
+    return split(last_line, token_separator);
+
+}
+
+QString FileChecker::tagUsername()
+{
+    vector<string> line = getLastLine(TAGFILE_PATH);
+
+    if (line.size() == 4) {
+        return QString::fromStdString(line[0]);
+    }
+    else {
+        return "NULL";
+    }
+
+}
+
+QString FileChecker::tagResult()
+{
+    vector<string> line = getLastLine(TAGFILE_PATH);
+
+    if (line.size() == 4) {
+        return QString::fromStdString(line[1]);
+    }
+    else {
+        return "NULL";
+    }
+
 }
 
 vector<string> FileChecker::split(string line, char delimiter) {
@@ -58,7 +84,11 @@ vector<string> FileChecker::split(string line, char delimiter) {
             singleString += line[i];
         }
     }
-    result.push_back(singleString);
+
+    if (singleString != "") {
+        result.push_back(singleString);
+    }
+    cout << result.size();
     return result;
 }
 

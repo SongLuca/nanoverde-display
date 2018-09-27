@@ -5,5 +5,14 @@
         <file>filechecker.cpp</file>
         <file>filechecker.h</file>
         <file>main.cpp</file>
+        <file>images/cheers_90degrees.svg</file>
+        <file>images/stopwatch_90degrees.svg</file>
+        <file>images/stopwatch.svg</file>
+        <file>images/question-mark_90degrees.svg</file>
+        <file>images/question-mark.svg</file>
+        <file>images/policeman.svg</file>
+        <file>images/policeman_90degrees.svg</file>
+        <file>images/close_90degrees.svg</file>
+        <file>images/close.svg</file>
     </qresource>
 </RCC>
