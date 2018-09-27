@@ -320,6 +320,18 @@ Window {
         anchors.verticalCenterOffset: 0
         rotation: -90
 
+
+        MultiPointTouchArea {
+            mouseEnabled: true
+            anchors.fill: parent
+            touchPoints: [
+                TouchPoint { id: touch1 },
+                TouchPoint { id: touch2 }
+
+            ]
+           onPressed: rectangle.color = "red"
+        }
+
         Text {
             text: "Date"
             visible: true
