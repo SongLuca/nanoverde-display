@@ -8,8 +8,7 @@ Window {
     id: window
     visible: true
     width: 480
-    height: 272
-
+    height: 272 
     title: qsTr("Nanoverde-display")
     color: "light green"
 
@@ -87,9 +86,9 @@ Window {
                 from: 1
                 to: 0
                 duration: 200
+                onStopped: beer.visible = false
             }
         }
-
 
     }
 
@@ -124,6 +123,7 @@ Window {
                 from: 1
                 to: 0
                 duration: 200
+                onStopped: tagUser.visible = false
             }
         }
     }
